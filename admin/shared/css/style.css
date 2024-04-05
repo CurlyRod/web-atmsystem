@@ -1,0 +1,94 @@
+:root{
+    --main-bg: #d5d6d88a; 
+    --sidebar-bg:#2C3145; 
+} 
+.brand-logo {
+    display:flex; 
+    justify-content:center; 
+    padding:10px;
+    align-items:center; 
+    gap:5rem;
+}
+.left-sidebar {
+   background:var(--sidebar-bg);
+/* background: rgba(34, 90, 168, 0.61);
+background: linear-gradient(0deg, rgb(64, 108, 170) 0%, rgba(72, 113, 172, 0.922) 100%); */
+} 
+ul#sidebarnav li{
+    color:#dadfe2;
+} 
+a.sidebar-link span{
+    color:#7EA0B4;
+} 
+ul#sidebarnav li img{
+    height:20px;
+} 
+.container-fluid{
+    background-color: var(--main-bg);
+} 
+#profileImage {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background: #2C3145;
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
+  .profile-container {
+    display:flex;
+    width:10rem;
+    align-items:center;
+    gap:10px;
+    justify-content: end;
+}
+ 
+.container-cards{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px; 
+    gap:10px;
+  } 
+  .panel-cards{ 
+   border-radius: 5px;
+   background-color: rgba(255, 255, 255, 0.8);
+   box-shadow: 4px 8px 15px 0px rgba(0,0,0,0.1);
+   padding: 30px;
+   font-size: 1rem; 
+   display: flex;  
+   align-items: center;
+   justify-content: space-evenly;
+   gap:1rem;
+  }   
+  .panel-cards img{
+    height:3rem;
+  }
+ .total{ 
+    display: flex; 
+    gap:10px;
+}  
+.total-user-logo{
+    display:flex; 
+    gap:10px; 
+    align-items:center; 
+    margin-bottom: 2rem;
+}
+#user-action-btn button
+{
+  display:flex; 
+  justify-content: space-evenly;
+}   
+
+a.sidebar-link.active span.hide-menu{
+    color:#ebf3fe !important;
+}
+  @media only screen and (max-width: 1023px)  { 
+    .container-cards{ 
+      display: flex; 
+      flex-direction: column; 
+    }
+    
+  }

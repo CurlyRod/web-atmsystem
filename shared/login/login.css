@@ -1,0 +1,13 @@
+
+.card.mb-0 .login-card{
+-webkit-box-shadow: 10px 11px 5px -9px rgba(79,116,217,0.22);
+-moz-box-shadow: 10px 11px 5px -9px rgba(79,116,217,0.22);
+box-shadow: 10px 11px 5px -9px rgba(79,116,217,0.22);
+} 
+.page-wrapper{
+background: rgb(242,209,248);
+background: linear-gradient(90deg, rgb(242 209 248) 0%, rgb(160 212 221 / 65%) 100%, rgb(245 227 247 / 52%) 100%);
+} 
+.login-container img{
+    width: 15.625rem;
+} 

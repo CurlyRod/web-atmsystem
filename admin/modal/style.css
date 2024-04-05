@@ -1,0 +1,27 @@
+.container-btn button {
+    width: 400px;
+}
+
+@media only screen and (max-width: 1023px) {
+    .form-item {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .success-container {
+        margin: 0 auto;
+    }
+
+    .success-container img {
+        height: 15rem;
+    }
+
+    .container-btn button {
+        width: 300px;
+    }
+} 
+.btn-add{
+    height:34px; 
+    margin-right: 10px;
+}
