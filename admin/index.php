@@ -28,7 +28,7 @@
                         <div class="card mb-0" id="card-container">
                             <div class="card-body login-card">
                                 <a href="#" class="login-container text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/images/google.png" alt="" style="width:5rem;">
+                                    <img src="./shared/images/google.png" alt="" style="width:5rem;">
                                 </a>
                                 <?php if($is_invalid): ?>
                                 <p>

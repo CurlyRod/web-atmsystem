@@ -4,11 +4,11 @@
     
     if($_SERVER["REQUEST_METHOD"] === "POST")   
     {   
-        require_once("./database/config.php");
+        require_once("./controller/config.php");
         $database = new Database();
         $mysqli = $database->getConnection(); 
          
-        $checkIfExist = sprintf("SELECT * FROM admin_userccounts WHERE email = '%s'",
+        $checkIfExist = sprintf("SELECT * FROM admin_useraccounts WHERE email = '%s'",
                                         $mysqli->real_escape_string($_POST["email"])); 
 
         $result = $mysqli->query($checkIfExist);
@@ -17,7 +17,7 @@
          
         if($userAccount) 
         {   
-            if(password_verify($_POST["password"] , $userAccount["password_hash"]))
+            if(password_verify($_POST["password"] , $userAccount["password"]))
             {   
                 session_start();  
                 session_regenerate_id();

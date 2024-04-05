@@ -1,7 +1,7 @@
 $(document).ready(function(){
     RenderAllRecord();
     TotalUser();
-
+     
     function RenderAllRecord() {
         $.ajax({
             url: "../controller/ActionController.php",
@@ -30,7 +30,6 @@ $(document).ready(function(){
             },
             success: function(response) {
                 var data = JSON.parse(response);
-                //console.log(data.total_user);
                 $("#total-user").html(data.total_user);
             }
         });
@@ -122,8 +121,7 @@ validation
                     type: "POST",
                     data: $("#signupForm").serialize() + "&action=insert",
                     success:function(response){ 
-                        var response = JSON.parse(response); 
-                        console.log(response);   
+                        var response = JSON.parse(response);   
                         if (response.statuscode === 200)
                         {   
                             $("#add-user-modal").modal('hide');
@@ -232,7 +230,6 @@ validationforUpdate
                 data: $("#editUserForm").serialize() + "&action=update",
                 success:function(response){ 
                     var response = JSON.parse(response); 
-                    console.log(response);   
                     if (response.statuscode === 200)
                     {   
                         $("#edit-user-modal").modal('hide');
@@ -255,7 +252,6 @@ $("#editUser").click(function(e){
         data: $("#editUserForm").serialize() + "&action=update",
         success:function(response){ 
             var response = JSON.parse(response); 
-            console.log(response);   
             if (response.statuscode === 400)
             {   
                 Swal.fire({ title: response.message, type: response.status ,icon: response.status });   
@@ -297,7 +293,6 @@ $('body').on("click", ".deleteBtn" , function(e){
                data:{delete_user: userId, action:"delete"},
                success:function(response){ 
                 var response= JSON.parse(response)
-                console.log(response); 
                 tr.css('background-color', "#F79696"); 
 
                 Swal.fire({ title: response.message, type: response.status ,icon: response.status});     
@@ -309,19 +304,16 @@ $('body').on("click", ".deleteBtn" , function(e){
     });
 
 //view
-    $('body').on("click", ".viewBtn" , function(e){  
+    $('body').on("click", ".viewBtn" , function(e){   
+
         e.preventDefault();
-         var userId = $(this).attr('id'); 
-       
-        console.log("Click me", userId); 
+         var userId = $(this).attr('id');  
         $.ajax({ 
             url:"../controller/ActionController.php", 
             type:"POST", 
             data:{view_id: userId ,action: "viewinfo"},
             success:function(response){
             var data = JSON.parse(response);  
-            console.log("data array", data); 
-           
             $("#view_user_Id").val(data[0].id); 
             $("#view_student_number").val(data[0].student_number); 
             $("#view_section").val(data[0].section); 
@@ -332,4 +324,5 @@ $('body').on("click", ".deleteBtn" , function(e){
             }
         });
     }); 
-});
+}); 
+

@@ -23,7 +23,6 @@ document.getElementById('profileImage').innerHTML = initials.toUpperCase();
                         order: [0, "desc"],
                         responsive: true
                     }); 
-                    
                 }
             });
         }
@@ -52,7 +51,6 @@ document.getElementById('profileImage').innerHTML = initials.toUpperCase();
                 },
                 success: function(response) {
                     var data = JSON.parse(response);
-                    console.log(data.total_section);
                     $("#total-section").html(data.total_section);
                 }
             });
