@@ -42,7 +42,7 @@
                                 <div class="form-container">
                                     <a href="#"
                                         class="register-container text-nowrap logo-img text-center d-block  w-100 ">
-                                        <img src="../assets/images/signup.jpg" alt="">
+                                        <img src="../shared/image/signup.jpg" alt="">
                                     </a>
                                     <p class="text-center mb-3">Register your details</p>
                                     <form method="POST"  action="process-signup.php" id="signupForm" novalidate 
@@ -111,7 +111,7 @@
                                             class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Register</button>
                                         <div class="d-flex align-items-center justify-content-center">
                                             <p class="fs-3 mb-0 fw-bold">Already have an Account?</p>
-                                            <a class="text-primary fw-bold ms-2" href="../login">Sign
+                                            <a class="text-primary fw-bold ms-2" href="../">Sign
                                                 In</a>
                                         </div>
                                     </form>
