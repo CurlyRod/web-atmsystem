@@ -11,7 +11,7 @@
 
         public function __construct()
         {
-            $this->conn = new mysqli( $this->HostName, 
+            $this->conn = new mysqli( $this->HostName,  
                                       $this->UserName,
                                       $this->PassWord, 
                                       $this->DatabaseName);

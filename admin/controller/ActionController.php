@@ -44,9 +44,6 @@
                         <ul class="dropdown-menu" id="user-action-btn"> 
                             <li> <button class="dropdown-item viewBtn" data-bs-toggle="modal" data-bs-target="#view-user-modal" id='.$row['id'].'>  
                             <img src="../shared/images/eye.png"> View </button></li>
-                            <li> <button class="dropdown-item editBtn"  data-bs-toggle="modal" data-bs-target="#edit-user-modal" id='.$row['id'].'> 
-                            <img src="../shared/images/pencil.png"> Edit</button></li>
-                            <li> <button class="dropdown-item deleteBtn" id='.$row['id'].'> <img src="../shared/images/trash.png"> Delete </button></li>
                         </ul>
                         </div>
                         </th> 
@@ -59,7 +56,7 @@
     {
         echo '<h3 class="text-center text-secondary"> No available data! </h3>';
     }  
-   }  
+}  
 
    if (isset($_POST['action']) && $_POST['action'] == "countuser") 
    {
@@ -89,66 +86,6 @@
         }
    } 
 
-   if (isset($_POST['edit_id']))
-   {
-        $userId = $_POST['edit_id'];  
-        $row = $actionClass->ShowInformation($userId);  
-        echo json_encode($row);
-   } 
- 
-   if(isset($_POST['action']) && $_POST['action'] == "update"){ 
-
-        $id = $_POST['edit_user_Id'];
-        $studentNumber = $_POST["edit_student_number"];
-        $firstName = $_POST['edit_fname']; 
-        $middleName = $_POST['edit_mname']; 
-        $lastName = $_POST['edit_lname']; 
-        $email = $_POST['edit_email']; 
-        $section = $_POST['edit_section'];  
-        
-        if (empty($id) || empty($studentNumber) || empty($firstName) || empty($lastName) || empty($email) || empty($section)) {
-            $result = ["statuscode"=> 400, "message"=> "Invalid input data.", "status" => "error"];
-            echo json_encode($result); 
-        } else {
-            try {
-                $update = $actionClass->UpdateUser($id, $studentNumber, $firstName, $middleName, $lastName, $email, $section); 
-                if ($update) {
-                
-                    $result = ["statuscode"=> 200, "message"=> "Successfully updated.", "status" => "success"];
-                    echo json_encode($result); 
-                } else {
-                
-                    $result = ["statuscode"=> 500, "message"=> "Failed to update.", "status" => "error"];
-                    echo json_encode($result); 
-                }
-            } catch (\Throwable $th) {
-          
-                error_log('Exception occurred: ' . $th->getMessage());
-                $result = ["statuscode"=> 500, "message"=> "An error occurred.", "status" => "error"];
-                echo json_encode($result); 
-            }
-        }
-   } 
-
-   if (isset($_POST['delete_user']) && $_POST['action'] == 'delete')
-    {
-        $id = $_POST['delete_user']; 
-        try {
-            $deleteUser = $actionClass->DeleteById($id);   
-            if($deleteUser)
-            {
-                $result = ["statuscode"=> 200, "message"=> "Successfully deleted.", "status" => "success"];
-                echo json_encode($result); 
-            } 
-
-        } catch (\Throwable $th) {
-           
-            error_log('Exception occurred: ' . $th->getMessage());
-            $result = ["statuscode"=> 500, "message"=> "An error occurred.", "status" => "error"];
-            echo json_encode($result); 
-        }
-    }
-   
     if (isset($_POST['view_id']) && $_POST['action'] == "viewinfo")
     {
          $userId = $_POST['view_id'];  

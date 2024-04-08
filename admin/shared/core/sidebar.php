@@ -1,4 +1,4 @@
-  <!-- Sidebar Start -->
+<!-- Sidebar Start -->
   <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
@@ -18,7 +18,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link active" href="#" aria-expanded="false">
+              <a class="sidebar-link <?php echo isPageActive('dashboard');?>" href="../dashboard" aria-expanded="false">
                 <span>
                   <img src="../shared/images/dashboard.png">   
                 </span>
@@ -47,7 +47,7 @@
               <span class="hide-menu">Maintenance</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link <?php echo isPageActive('maintenance');?>" href="../maintenance" aria-expanded="false">
                 <span>
                    <img src="../shared/images/gear.png">
                 </span>
