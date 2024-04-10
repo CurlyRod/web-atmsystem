@@ -1,20 +1,3 @@
-function checkforblank() {
-    
-    var location = document.getElementById('section'); 
-    var error = document.getElementById('error-msg');
-    var invalid = location.value == "Choose Section";
-  
-    if (invalid) {
-        location.className = 'form-select form-select'; 
-        error.className = 'd-block';
-    }
-    else {
-        location.className = 'form-select form-select'; 
-        error.className = 'd-none';
-    }
-    
-    return !invalid;
-} 
 
 function restrictToLetters(inputElement) {
     inputElement.addEventListener("input", function(event) {

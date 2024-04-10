@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-3">
-                <form method="POST" action="" id="signupForm" novalidate onsubmit=" return checkforblank()">
+                <form method="POST" action="" id="signupForm">
                     <div class="row mb-2 form-item">
                         <div class="col">
                             <label class="form-label">Student Number</label>
@@ -16,8 +16,7 @@
                         </div>
                         <div class="col">
                             <label class="form-label">Section</label>
-                            <select class="form-select form-select" id="section" name="section"
-                                onchange="checkforblank()">
+                            <select class="form-select form-select" id="section" name="section" >
                                 <option selected> Choose Section</option>
                                 <?php  
                                                     foreach($allSection as $option)

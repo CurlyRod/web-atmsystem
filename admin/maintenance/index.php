@@ -28,10 +28,11 @@
             </div>
         </div>
     </div> 
-    <!-- <script src="../js/dashboard-script.js"></script> -->
+    <script src="../js/maintenance-script.js"></script>
     <script src="../js/custom_sanitize.js"></script>
-    <script src="../js/function-script.js"></script>
-    <script src="../js/logout.js"></script>
+    <!-- <script src="../js/function-script.js"></script> -->
+    <script src="../js/logout.js"></script> 
+    <script src="../js/profile-script.js"></script> 
 </body>
 
 </html>

@@ -34,7 +34,7 @@
                                 <p>
                                 <div class="alert alert-danger text-center p-2" role="alert">Invalid Credential </div>
                                 </p>
-                                <?php endif; ?>
+                                <?php endif;   ?>
                                 <form method="POST" a>
                                     <div class="mb-3">
                                         <label class="form-label">Email address</label>

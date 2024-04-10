@@ -14,5 +14,10 @@
  else {
     header("Location: ../index.php");
     exit(); 
+} 
+
+function isPageActive($pageName) {
+    return (basename(dirname($_SERVER['PHP_SELF'])) == $pageName) ? 'active' : '';
 }
+
 ?>
