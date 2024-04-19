@@ -6,7 +6,7 @@
             <img src="../shared/images/desktop.png">
         </span> 
         
-        <div class="total">3 <span>Total Late</span></div>
+        <div class="total"><span id="total-verified"></span> <span>Total Verified</span></div>
     </div>
     <div class="panel-cards">
         <span class="first-header">
@@ -24,7 +24,7 @@
         <span class="first-header">
             <img src="../shared/images/pie-chart.png">
         </span>
-        <div class="total">3 <span>Total Late</span></div>
+        <div class="total"><span id="total-late"></span><span>Total Late</span></div>
     </div>
 </div>
 <div class="recent-table-container mt-5">

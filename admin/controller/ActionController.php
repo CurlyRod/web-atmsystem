@@ -23,23 +23,27 @@
                             <th>Lastname</th>
                             <th>Section</th> 
                             <th>Email</th> 
-                            <th class="text-center">Date Created</th> 
+                            <th class="text-center">Time In</th>  
+                            <th class="text-center">Time Out</th>  
                             <th class="text-center">Action</th>  
                         </tr>
                     </thead> 
                     <tbody>'; 
         foreach($data as $row) 
         {       
-        $datetime = new DateTime($row['date_register']);
-        $dateFiltered = $datetime->format('Y/m/d h:i A');
+        $datetime = new DateTime($row['time_in']); 
+        $timeOut =  new DateTime($row['time_out']); 
+        $dateFiltered = $datetime->format('Y/m/d h:i A'); 
+        $dateTimeout = $datetime->format('Y/m/d h:i A');
              $output .=' <tr>  
                         <th>'.$row['student_number'].'</th> 
-                        <th>'.$row['rfid_tag'].'</th>
+                        <th>'.$row['verify_tag'].'</th>
                         <th>'.$row['first_name'].'</th> 
                         <th>'.$row['last_name'].'</th>
                         <th>'.$row['section'].'</th> 
                         <th>'.$row['email'].'</th> 
-                        <th class="text-center">'.$dateFiltered.'</th>  
+                        <th class="text-center">'.$dateFiltered.'</th>   
+                        <th class="text-center">'.$dateTimeout.'</th> 
                         <th class="text-center">  
                         <div class="dropdown">
                         <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,6 +107,26 @@
        { 
          $data =  $actionClass->TotalSection();
          $response = array("status"=> 200 , "total_section" =>  $data); 
+         echo json_encode($response);
+       }
+    } 
+
+    if (isset($_POST['action']) && $_POST['action'] == "countlate") 
+    {
+       if ($actionClass->TotalLate() > 0) 
+       { 
+         $data =  $actionClass->TotalLate();
+         $response = array("status"=> 200 , "total_late" =>  $data); 
+         echo json_encode($response);
+       }
+    } 
+
+    if (isset($_POST['action']) && $_POST['action'] == "countverified") 
+    {
+       if ($actionClass->Verified() > 0) 
+       { 
+         $data =  $actionClass->Verified();
+         $response = array("status"=> 200 , "total_verified" =>  $data); 
          echo json_encode($response);
        }
     }

@@ -8,15 +8,21 @@
       $mysqli  = $database->getConnection();    
 
        $data = array();   
-       $fetchAllData = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, u.rfid_tag ,u.date_register
-       FROM useraccounts AS u
-       INNER JOIN section AS s ON s.id = u.section  
-       ORDER BY u.date_register DESC";  
-       $stmt = $mysqli->prepare($fetchAllData);
-       $stmt->execute();    
-       $result = $stmt->get_result();
-       $render = $result->fetch_all(MYSQLI_ASSOC); 
-       foreach ($render as $row) {
+      //  $fetchAllData = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, u.rfid_tag ,u.date_register
+      //  FROM useraccounts AS u
+      //  INNER JOIN section AS s ON s.id = u.section  
+      //  ORDER BY u.date_register DESC";   
+        $fetchAllData = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, v.verify_tag ,u.date_register,m.time_in, m.time_out
+        FROM useraccounts AS u 
+        INNER JOIN verify as v ON v.student_number = u.student_number
+        INNER JOIN section AS s ON u.student_number != '' and s.id = u.section 
+        INNER JOIN monitoring AS m ON m.student_number = u.student_number
+        GROUP BY u.student_number  ORDER BY u.date_register DESC";
+        $stmt = $mysqli->prepare($fetchAllData);
+        $stmt->execute();    
+        $result = $stmt->get_result();
+        $render = $result->fetch_all(MYSQLI_ASSOC); 
+        foreach ($render as $row) {
          $data[] = $row;
        } 
        return $data;
@@ -98,9 +104,13 @@
       $database = new Database();
       $mysqli = $database->getConnection();  
 
-      $selectById = "SELECT id, student_number, first_name, middle_name, last_name, email,section,rfid_tag,
-      date_register, status, verify, archive
-      FROM useraccounts  WHERE id = ? ";
+      $selectById = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, s.id as sid, v.verify_tag ,u.date_register,m.time_in, m.time_out,u.email
+      FROM useraccounts AS u 
+      INNER JOIN verify as v ON v.student_number = u.student_number
+      INNER JOIN section AS s ON u.student_number != '' and s.id = u.section 
+      INNER JOIN monitoring AS m ON m.student_number = u.student_number
+      WHERE u.id = ? 
+      GROUP BY u.student_number  ORDER BY u.date_register;";
       $stmt = $mysqli->prepare($selectById); 
       $stmt->bind_param('i', $id); 
       $stmt->execute();    
@@ -152,7 +162,36 @@
     { 
       $database = new Database();
       $mysqli = $database->getConnection(); 
-      $totalCountRow = "SELECT * FROM section";
+      $totalCountRow = "SELECT * FROM section WHERE id > 1";
+      $stmt = $mysqli->prepare($totalCountRow);
+      $stmt->execute();   
+      $stmt->store_result();
+      $t_rows = $stmt->num_rows; 
+      $stmt->free_result(); 
+      $stmt->close(); 
+      return $t_rows;
+    }  
+
+
+    public function TotalLate()
+    { 
+      $database = new Database();
+      $mysqli = $database->getConnection(); 
+      $totalCountRow = "SELECT * FROM monitoring WHERE late = 1";
+      $stmt = $mysqli->prepare($totalCountRow);
+      $stmt->execute();   
+      $stmt->store_result();
+      $t_rows = $stmt->num_rows; 
+      $stmt->free_result(); 
+      $stmt->close(); 
+      return $t_rows;
+    } 
+
+    public function Verified()
+    { 
+      $database = new Database();
+      $mysqli = $database->getConnection(); 
+      $totalCountRow = "SELECT * FROM verify WHERE status = 1";
       $stmt = $mysqli->prepare($totalCountRow);
       $stmt->execute();   
       $stmt->store_result();

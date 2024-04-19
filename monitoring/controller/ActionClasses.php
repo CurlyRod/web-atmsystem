@@ -22,7 +22,7 @@
             $checkRecord = $checkStudent->CheckRecord($studentNumber, $dateNow);    // this function is to ensure if the record not duplicating in the same day. -rod 
             if ($checkRecord['time_in'] == true && $checkRecord['time_out'] == true)
             {
-                $result =  array("time_in" => true,"time_out" => true, "message" => "Time Out & Time In Already done for this day.");  
+                $result =  array("time_in" => true,"time_out" => true, "message" => "Time in & Time In Already done for this day.");  
                 // note: you need to convert it json  return in API  
                 echo json_encode( $result) ; 
             }  
