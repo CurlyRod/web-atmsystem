@@ -105,7 +105,7 @@
             if (!$stmt->execute()) {
                 return array("time_out" => false, "message" => "Execution failed: (" . $stmt->errno . ") " . $stmt->error);
             } 
-            $image =  $getImages['image'];
+            $image =  $getImages['data']['image'];
             return array("time_in" => true, "time_out" => true, "status" => 200, "message" => "Time Out successful.", "image" => $image, $getImages);
         
         }  

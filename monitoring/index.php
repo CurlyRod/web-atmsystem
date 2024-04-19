@@ -29,9 +29,11 @@
                         <div class="card mb-0" id="card-container">
                             <div class="card-body">
                                 <div class="success-container">
-                                    <div class="image-container">
+                                   <div class="border-image">
+                                   <div class="image-container">
                                         <img src="../assets/uploads/placeholder.png" id="studentImg">
                                     </div>
+                                   </div>
                                     <div class="name-container">
                                         <p class="message fw-bold ">Student Number:</p>
                                         <p class="message fw-bold"  id="studentnumber">09876543211</p>
@@ -44,6 +46,7 @@
                                         <p class="message fw-bold">Section: </p>
                                         <p class="message fw-bold" id="section">BSIT-412 </p>
                                     </div> 
+                                     
                                     <div class="top-message" style="opacity:0;"><input type="text" id="rfidTagField" autofocus></div>
                                 </div>
                             </div>
@@ -79,8 +82,15 @@
                             $("#section").text(res.section);
                             // $("#errorMsg").text(res.message);
                         } else {
-                            console.log("Else", res);
-                            $("#errorMsg").text(res.message);
+                            
+                            $("#errorMsg").text(res.message); 
+                            Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                            });
                         }
                     },
                     error: function(xhr, status, error) {

@@ -24,13 +24,19 @@
     font-size:17px;  
    
 } 
-.name-container img{
-    height: 350px;
-    width: 500px;
-}
+
 .image-container
 {
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
+}
+.border-image{
+    border: 1px solid grey;
+    width: 100%; 
+    display:flex; 
+    justify-content:center; 
+    align-items:center; 
+    margin-bottom:20px;
+
 }
 @media only screen and (max-width: 1023px)  { 
   
