@@ -37,18 +37,4 @@
             });
         }  
 
-        function TotalSection() {
-            $.ajax({
-                url: "../controller/ActionController.php",
-                type: "POST",
-                data: {
-                    action: "countsection"
-                },
-                success: function(response) {
-                    var data = JSON.parse(response);
-                    $("#total-section").html(data.total_section);
-                }
-            });
-        } 
-
     });

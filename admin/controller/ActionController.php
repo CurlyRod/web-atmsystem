@@ -4,7 +4,9 @@
    $renderData =  new RenderAllRecord();   
    $insertData = new  RegisterNewUser(); 
    $countRows = new TotalCountRow();  
-   $actionClass = new ActionClass();
+   $actionClass = new ActionClass();  
+ 
+
 
    if (isset($_POST['action']) && $_POST['action'] == "view") 
    { 
@@ -15,7 +17,8 @@
         $output .= '<table id="user_datatable" class="table table-striped table-responsive" style="width:100%">  
                     <thead > 
                         <tr >       
-                            <th>Student #</th> 
+                            <th>Student #</th>
+                            <th>RFID Tag</th> 
                             <th>Firstname</th> 
                             <th>Lastname</th>
                             <th>Section</th> 
@@ -30,7 +33,8 @@
         $datetime = new DateTime($row['date_register']);
         $dateFiltered = $datetime->format('Y/m/d h:i A');
              $output .=' <tr>  
-                        <th>'.$row['student_number'].'</th>
+                        <th>'.$row['student_number'].'</th> 
+                        <th>'.$row['rfid_tag'].'</th>
                         <th>'.$row['first_name'].'</th> 
                         <th>'.$row['last_name'].'</th>
                         <th>'.$row['section'].'</th> 
@@ -80,7 +84,7 @@
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);  
 
         try {
-            $insertData->GetRegisterUser($studentNumber, $firstName, $middleName, $lastName, $email, $section, $password_hash);
+            $insertData->GetRegisterUser($studentNumber, $firstName, $middleName, $lastName, $email, $section, $password_hash); 
         } catch (\Throwable $th) { 
             error_log('Exception occurred: ' . $th->getMessage());
         }

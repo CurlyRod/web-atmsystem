@@ -28,9 +28,10 @@
                         <div class="card mb-0" id="card-container">
                             <div class="card-body">
                                 <div class="success-container">
-                                    <div class="top-message">Successful registration</div>
-                                    <img src="../assets/images/success.jpg">
-                                    <p class="message fw-bold">I appreciate you being so amazing! </p>
+                                    <div class="top-message">Successful Registration</div>
+                                    <img src="../shared/image/success.jpg">
+                                    <p class="message fw-bold">I appreciate you being so amazing! </p> 
+                                    <p class="message fw-bold">Verification code was sent to your email. </p>
                                 </div>
                                 <p class="login text-center fw-bold">You can now <a href="../index.php">Login</a></p>
                             </div>

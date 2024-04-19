@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <?php include ('../shared/core/header.php');?> 
-    <title>Admin - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include ('../shared/core/header.php');?>
+    <title>Admin - Maintenance</title>
 </head>
 
-<body class="overlay-bg"> 
+<body class="overlay-bg">
+
     <?php 
     require_once("../controller/config.php");  
     include ('../checkuser.php');
     include '../controller/FetchSectionController.php';  
     $section = new FetchSection();
     $allSection = $section->GetAllSection();    
-    ?> 
-    <a href="../shared/js/app.min.js"></a>
+    ?>
     <?php include("../modal/dashboard_modal.php") ?>
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <?php  include("../shared/core/sidebar.php");?>
-        <div class="body-wrapper"> 
+        <div class="body-wrapper">
             <?php include("../shared/core/topbar.php") ?>
             <div class="container-fluid">
-                <?php include("./content.php");?> 
-                
+                <?php include("./content.php");?>
             </div>
         </div>
-    </div> 
-    <!-- <script src="../js/dashboard-script.js"></script> -->
+    </div>
     <script src="../js/custom_sanitize.js"></script>
     <script src="../js/function-script.js"></script>
     <script src="../js/logout.js"></script>

@@ -9,15 +9,16 @@
                 </div> 
                 <div class="col-3 d-flex justify-content-end align-items-center">
                 <button class="btn btn-md" id="add-user" data-bs-toggle="modal" data-bs-target="#add-user-modal"> 
-                <img src="../shared/images/add-user.png" style="height:40px;"></button>  
+                <img src="../shared/images/add-user.png" style="height:40px;"></button> 
+                <button class="btn btn-md" id="add-user" data-bs-toggle="modal" data-bs-target="#verify-rfid-modal"> 
+                <img src="../shared/images/rfid.png" style="height:40px;"></button>  
                 </div>
             </div> 
-
             <div class="table-container table-responsive mt-2" >
                 <div id="showUser" >
                 </div </div>
             </div>
         </div> 
-      
+     
    
         

@@ -45,8 +45,7 @@
                                         <img src="../shared/image/signup.jpg" alt="">
                                     </a>
                                     <p class="text-center mb-3">Register your details</p>
-                                    <form method="POST"  action="process-signup.php" id="signupForm" novalidate 
-                                        onsubmit=" return checkforblank()">
+                                    <form method="POST"id="signupForm" novalidate  onsubmit=" return checkforblank()">
                                         <div class="row mb-2 form-item">
                                             <div class="col">
                                                 <label class="form-label">Student Number</label>
