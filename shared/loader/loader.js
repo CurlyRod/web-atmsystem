@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $(window).on('load', function() {
    setTimeout(removeLoader, 1200);
 });
-
+ 
 // Function to show loader
 function showLoader() {
    $("#loader").fadeIn(500);

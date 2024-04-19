@@ -1,26 +1,33 @@
 <?php   
  require_once("./config.php");  
- require_once("./FunctionController.php"); 
+ require_once("./FunctionController.php");
+  
  $renderData =  new RenderAllRecord();   
  $insertData = new  RegisterNewUser(); 
  $countRows = new TotalCountRow();  
- $actionClass = new ActionClass(); 
+ $actionClass = new ActionClass();  
+
+ $maintenanceClass = new MaintenanceActionClass();
 
 
 if (isset($_POST['action']) && $_POST['action'] == "view") 
    { 
     $output = ''; 
-    $data = $renderData->GetAllData();  
+    $data = $maintenanceClass->TotalRegisteredUser();  
     if ($countRows->GetAllRows() > 0)
     {
-        $output .= '<table id="user_datatable" class="table table-striped table-responsive" style="width:100%">  
+        $output .= '<table id="user_datatable" class="table table-striped table-responsive" style="width:100%; font-size:0.8rem;" >  
                     <thead > 
-                        <tr >       
-                            <th>Student #</th> 
+                        <tr >  
+                          
+                            <th>Student #</th>  
+                            <th>RFID Tag</th> 
                             <th>Firstname</th> 
                             <th>Lastname</th>
                             <th>Section</th> 
-                            <th>Email</th> 
+                            <th>Email</th>  
+                            <th  class="text-center">Status</th>  
+                            <th  class="text-center">Verify</th>  
                             <th class="text-center">Date Created</th> 
                             <th class="text-center">Action</th>  
                         </tr>
@@ -28,14 +35,18 @@ if (isset($_POST['action']) && $_POST['action'] == "view")
                     <tbody>'; 
         foreach($data as $row) 
         {       
+        $setStatus =  $row['status'] == 1 ? '<img src="../shared/images/check.png" style="height:14px;">' : '<img src="../shared/images/multiply.png" style="height:14px;">'; 
         $datetime = new DateTime($row['date_register']);
         $dateFiltered = $datetime->format('Y/m/d h:i A');
-             $output .=' <tr>  
-                        <th>'.$row['student_number'].'</th>
+             $output .=' <tr>   
+                        <th>'.$row['student_number'].'</th> 
+                        <th>'.$row['verify_tag'].'</th>
                         <th>'.$row['first_name'].'</th> 
                         <th>'.$row['last_name'].'</th>
                         <th>'.$row['section'].'</th> 
-                        <th>'.$row['email'].'</th> 
+                        <th>'.$row['email'].'</th>  
+                        <th  class="text-center">'.$setStatus.'</th>
+                        <th  class="text-center">'.$setStatus.'</th>
                         <th class="text-center">'.$dateFiltered.'</th>  
                         <th class="text-center">  
                         <div class="dropdown">
@@ -125,11 +136,40 @@ if (isset($_POST['delete_user']) && $_POST['action'] == 'delete')
 
 if (isset($_POST['action']) && $_POST['action'] == "countsection") 
 {
-   if ($actionClass->TotalSection() > 0) 
-   { 
-     $data =  $actionClass->TotalSection();
-     $response = array("status"=> 200 , "total_section" =>  $data); 
-     echo json_encode($response);
-   }
+     if ($actionClass->TotalSection() > 0) 
+    { 
+    $data =  $maintenanceClass->TotalRegisteredUser();
+    $response = array("status"=> 200 , "total_section" =>  $data); 
+    echo json_encode($response);
 }
+} 
+
+if (isset($_POST['action']) && $_POST['action'] == "verify") 
+{    
+    $tag = $_POST['verify_tag']; 
+    $code = $_POST['verify_code']; 
+
+   try {
+        $verifyUser = $maintenanceClass->VerifyUser($tag, $code); 
+        if($verifyUser)
+        {
+            $result = ["statuscode"=> 200, "message"=> "Successfully verify.", "status" => "success"];
+            echo json_encode($result); 
+        }
+        
+   } catch (\Throwable $th) { 
+    
+    error_log('Exception occurred: ' . $th->getMessage());
+    $result = ["statuscode"=> 500, "message"=> "An error occurred.", "status" => "error"];
+    echo json_encode($result);
+   }
+} 
+
+if (isset($_POST['view_id']) && $_POST['action'] == "viewinfo")
+{
+     $userId = $_POST['view_id'];  
+     $row = $maintenanceClass->ShowInformation($userId);  
+     echo json_encode($row);
+}  
+
 ?>

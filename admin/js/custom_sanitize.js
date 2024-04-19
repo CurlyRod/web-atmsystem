@@ -19,3 +19,4 @@ restrictToLetters(document.getElementById("fname"));
 restrictToLetters(document.getElementById("mname")); 
 restrictToLetters(document.getElementById("lname")); 
 restrictToNumbers(document.getElementById("student_number"));
+ 

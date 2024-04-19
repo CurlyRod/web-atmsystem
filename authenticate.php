@@ -22,7 +22,7 @@
                 session_start();  
                 session_regenerate_id();
                 $_SESSION["user_id"] = $userAccount["student_number"];    
-                header("Location: ./myprofile");
+                header("Location: ./student");
                 exit;
             }
         } 

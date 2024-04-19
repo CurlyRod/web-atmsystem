@@ -30,5 +30,11 @@ $(document).ready(function(){
           });
        }); 
 
-
+}); 
+$(document).ready(function() {
+    const fullName = $('#fullName').text(); // Use .text() to get the text content of the <span> element
+    const [firstName, , lastName] = fullName.split(' '); // Using array destructuring to skip the middle name
+    const initials = firstName[0] + lastName[0];
+    document.getElementById('profileImage').innerHTML = initials.toUpperCase(); 
+    console.log(fullName);
 });

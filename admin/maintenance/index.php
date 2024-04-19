@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <?php include ('../shared/core/header.php');?> 
-    <title>Admin - Dashboard</title>
+    <title>Admin - Maintenance</title>
 </head>
 
 <body class="overlay-bg"> 
@@ -16,7 +16,8 @@
     $allSection = $section->GetAllSection();    
     ?> 
     <a href="../shared/js/app.min.js"></a>
-    <?php include("../modal/dashboard_modal.php") ?>
+    <?php include("../modal/dashboard_modal.php") ?> 
+    <?php include("../modal/maintenance_modal.php") ?>
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <?php  include("../shared/core/sidebar.php");?>
@@ -24,15 +25,14 @@
             <?php include("../shared/core/topbar.php") ?>
             <div class="container-fluid">
                 <?php include("./content.php");?> 
-                
             </div>
         </div>
     </div> 
     <script src="../js/maintenance-script.js"></script>
     <script src="../js/custom_sanitize.js"></script>
     <!-- <script src="../js/function-script.js"></script> -->
+ 
     <script src="../js/logout.js"></script> 
-    <script src="../js/profile-script.js"></script> 
 </body>
 
 </html>

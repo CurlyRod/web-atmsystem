@@ -34,14 +34,6 @@
                 <span class="hide-menu">Attendance</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                  <img src="../shared/images/focus-group.png">
-                </span>
-                <span class="hide-menu">Total User</span>
-              </a>
-            </li> 
              <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Maintenance</span>
@@ -51,7 +43,7 @@
                 <span>
                    <img src="../shared/images/gear.png">
                 </span>
-                <span class="hide-menu">Maintenance</span>
+                <span class="hide-menu">Total User</span>
               </a>
             </li>
             <li class="nav-small-cap">

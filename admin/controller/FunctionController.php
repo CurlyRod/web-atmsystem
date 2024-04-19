@@ -8,7 +8,7 @@
       $mysqli  = $database->getConnection();    
 
        $data = array();   
-       $fetchAllData = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section,u.date_register
+       $fetchAllData = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, u.rfid_tag ,u.date_register
        FROM useraccounts AS u
        INNER JOIN section AS s ON s.id = u.section  
        ORDER BY u.date_register DESC";  
@@ -98,7 +98,7 @@
       $database = new Database();
       $mysqli = $database->getConnection();  
 
-      $selectById = "SELECT id, student_number, first_name, middle_name, last_name, email,section,
+      $selectById = "SELECT id, student_number, first_name, middle_name, last_name, email,section,rfid_tag,
       date_register, status, verify, archive
       FROM useraccounts  WHERE id = ? ";
       $stmt = $mysqli->prepare($selectById); 
@@ -161,7 +161,59 @@
       $stmt->close(); 
       return $t_rows;
     }
- }
+ } 
+
+  class MaintenanceActionClass
+  { 
+  
+    public function TotalRegisteredUser(){ 
+      $database = new Database();
+      $mysqli = $database->getConnection();
+
+      $totalCountRow = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.section, v.verify_tag ,u.date_register,v.status
+      FROM useraccounts AS u 
+      INNER JOIN verify as v
+      INNER JOIN section AS s ON u.student_number = v.student_number and s.id = u.section
+      ORDER BY u.date_register DESC";
+      $stmt = $mysqli->prepare($totalCountRow); 
+      $stmt->execute();    
+      $result = $stmt->get_result();
+      $render = $result->fetch_all(MYSQLI_ASSOC);  
+      return $render;
+    }    
+
+    public function VerifyUser($rfid_tag, $verify_code)
+    {
+      $database = new Database();
+      $mysqli = $database->getConnection();   
+      $status = 1;  
+      date_default_timezone_set('Asia/Manila'); 
+      $dateNow =  date("Y-m-d H:i:s");
+      $updateUser = "UPDATE verify SET verify_tag = ? , date_verified = ?, status = ?  WHERE verify_code = ?";
+      $stmt = $mysqli->prepare($updateUser); 
+      $stmt->bind_param('ssss', $rfid_tag, $dateNow, $status ,$verify_code); 
+      $stmt->execute();   
+      return true;
+    }
+
+   public function ShowInformation($id)
+   {
+      $database = new Database();
+      $mysqli = $database->getConnection();  
+
+      $selectById = "SELECT u.id, u.student_number, u.first_name,u.middle_name,u.last_name,u.email,s.id, v.verify_tag ,u.date_register,v.status
+      FROM useraccounts AS u 
+      INNER JOIN verify as v
+      INNER JOIN section AS s ON u.student_number = v.student_number and s.id = u.section  WHERE u.id = ? 
+      ORDER BY u.date_register DESC ";
+      $stmt = $mysqli->prepare($selectById); 
+      $stmt->bind_param('i', $id); 
+      $stmt->execute();    
+      $result = $stmt->get_result();
+      $render = $result->fetch_all(MYSQLI_ASSOC);  
+      return $render;
+   }  
+  }
 //  class AttendanceRecord
 //  {
 //    function GetAttendanceNow(){

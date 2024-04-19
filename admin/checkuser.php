@@ -7,9 +7,10 @@
             $checkIfExist =  "SELECT * FROM admin_useraccounts 
                                  WHERE id = {$_SESSION["user_id"]}"; 
      $result = $mysqli->query($checkIfExist); 
-     $userInformation =   $result->fetch_assoc(); 
-
-     
+     $userInformation =   $result->fetch_assoc();   
+   
+    $_SESSION['fname']  =  $userInformation['first_name'];
+    $_SESSION['lname']  =  $userInformation['last_name'];
  }
  else {
     header("Location: ../index.php");

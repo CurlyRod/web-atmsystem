@@ -57,11 +57,12 @@
     }  
     $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $RegisterStudent  = new UserRegister();  
+    $RegisterStudent  = new UserRegister();   
+    $GenerateCode = new GenerateCode();
   
-    
     try {   
-        $resultRegister =  $RegisterStudent->RegisterStudent($studentNumber, $firstName, $middleName, $lastName, $email, $section, $password_hash); 
+        $resultRegister =  $RegisterStudent->RegisterStudent($studentNumber, $firstName, $middleName, $lastName, $email, $section, $password_hash);    
+      
     } catch (Exception $e) {
         if ($e->getCode() === 1062) {
             die("This email or student number is already in use. Please choose a different one.");

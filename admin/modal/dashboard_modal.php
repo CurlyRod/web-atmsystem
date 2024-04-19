@@ -100,7 +100,7 @@
                         <div class="col">
                             <label class="form-label">Section</label>
                             <select class="form-select form-select" id="edit_section" name="edit_section" onchange="checkforblank()">
-                                <option selected> Choose Section</option>
+                                <option value ="1" selected> Choose Section</option>
                                 <?php  
                                  foreach($allSection as $option)
                                      {
@@ -164,6 +164,10 @@
                         <div class="col ">
                             <label class="form-label">Student Number</label>
                             <input type="text" class="form-control disabled"" id="view_student_number" name="view_student_number">
+                        </div> 
+                        <div class="col ">
+                            <label class="form-label">RFID Tag</label>
+                            <input type="text" class="form-control disabled"" id="view_rfid" name="view_rfid" >
                         </div>
                         <div class="col">
                             <div class="col">

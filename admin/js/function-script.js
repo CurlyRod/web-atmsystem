@@ -1,7 +1,8 @@
 $(document).ready(function(){
     RenderAllRecord();
     TotalUser();
-     
+    TotalSection();
+
     function RenderAllRecord() {
         $.ajax({
             url: "../controller/ActionController.php",
@@ -33,125 +34,21 @@ $(document).ready(function(){
                 $("#total-user").html(data.total_user);
             }
         });
+    }  
+    function TotalSection() {
+        $.ajax({
+            url: "../controller/ActionController.php",
+            type: "POST",
+            data: {
+                action: "countsection"
+            },
+            success: function(response) {
+                var data = JSON.parse(response); 
+                console.log(data);
+                $("#total-section").html(data.total_section);
+            }
+        });
     } 
-
-//     const validation = new JustValidate("#signupForm"); 
-// validation 
-//     .addField("#student_number",[ 
-//         {    
-//             rule:"required",
-//             // errorMessage: 'Student number Mandatory'
-//         },{
-//             rule: 'minLength',
-//             value: 11,
-//         },
-//         {
-//             rule: 'maxLength',
-//             value: 11,
-//         },
-//         {
-//             validator: (value) => () => 
-//             {
-//                 return fetch("validate-credential.php?student_number="+ encodeURIComponent(value)) 
-//                         .then(function(response)
-//                         {
-//                             return response.json();
-//                         })
-//                         .then(function(json) {
-//                             return json.available;
-//                         });
-//             }, 
-//             errorMessage: "Student Number already taken"
-//         }
-//     ])  
-
-//     .addField("#fname", [
-//         {   
-//             rule:"required"   
-//         }
-//     ])  
-//     .addField("#lname", [
-//         {   
-//             rule:"required"   
-//         }
-//     ]) 
-//     .addField("#email", [
-//         {
-//             rule:"required"
-//         },
-//         {
-//             rule:"email"
-//         },
-//         {
-//             validator: (value) => () => 
-//             {
-//                 return fetch("validate-credential.php?email="+ encodeURIComponent(value)) 
-//                         .then(function(response)
-//                         {
-//                             return response.json();
-//                         })
-//                         .then(function(json) {
-//                             return json.available;
-//                         });
-//             }, 
-//             errorMessage: "Email already taken"
-//         }
-//     ]) 
-//     .addField("#password" ,[
-//         {   
-//             rule:"required"
-//         },
-//         {
-//             rule:"password"
-//         } 
-//     ]) 
-//     .addField("#password_confirmation",[
-//         {
-//             validator: (value, fields) =>{
-//               return value === fields["#password"].elem.value;
-//             },
-//                 errorMessage: "Password should match"
-//         }
-//     ]) 
-//     .onSuccess((event) => { 
-//         if ($("#signupForm")[0].checkValidity()) { 
-//             event.preventDefault(); 
-//                 var isValid = false;
-//                 var location = document.getElementById('section'); 
-//                 var error = document.getElementById('error-msg');
-//                 var invalid = location.value == "Choose Section";
-              
-//                 if (invalid) {
-//                     location.className = 'form-select form-select'; 
-//                     error.className = 'd-block';
-//                 }
-//                 else {
-//                     location.className = 'form-select form-select'; 
-//                     error.className = 'd-none';  
-//                     isValid = true; 
-
-//                     if(isValid)
-//                     {
-//                         $.ajax({
-//                             url: "../controller/ActionController.php",
-//                             type: "POST",
-//                             data: $("#signupForm").serialize() + "&action=insert",
-//                             success:function(response){ 
-//                                 var response = JSON.parse(response);   
-//                                 if (response.statuscode === 200)
-//                                 {   
-//                                     $("#add-user-modal").modal('hide');
-//                                     $("#signupForm")[0].reset(); 
-//                                     Swal.fire({ title: response.message, type: response.status ,icon: response.status });     
-//                                     RenderAllRecord();
-//                                 }
-//                             }
-//                         });
-//                     }
-//                 } 
-//             }
-//     }); 
-
  
 // //  edit 
 // $('body').on("click", ".editBtn" , function(e){  
@@ -275,7 +172,8 @@ $(document).ready(function(){
             success:function(response){
             var data = JSON.parse(response);  
             $("#view_user_Id").val(data[0].id); 
-            $("#view_student_number").val(data[0].student_number); 
+            $("#view_student_number").val(data[0].student_number);  
+            $("#view_rfid").val(data[0].rfid_tag); 
             $("#view_section").val(data[0].section); 
             $("#view_fname").val(data[0].first_name); 
             $("#view_mname").val(data[0].middle_name); 

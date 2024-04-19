@@ -82,7 +82,41 @@ validation
         }
     ]) 
     .onSuccess((event) => { 
-        document.getElementById("signupForm").submit();
+        if ($("#signupForm")[0].checkValidity()) { 
+            event.preventDefault(); 
+                var isValid = false;
+                var location = document.getElementById('section'); 
+                var error = document.getElementById('error-msg');
+                var invalid = location.value == "Choose Section";
+              
+                if (invalid) {
+                    location.className = 'form-select form-select'; 
+                    error.className = 'd-block';
+                }
+                 else {
+                    location.className = 'form-select form-select'; 
+                    error.className = 'd-none';  
+                    isValid = true; 
+
+                    if(isValid)
+                    {
+                        $.ajax({
+                            url: "./process-signup.php",
+                            type: "POST",
+                            data: $("#signupForm").serialize(),
+                            success:function(response){ 
+                                var response = JSON.parse(response);   
+                                if (response.status === 200)
+                                {      
+                                    $("#signupForm")[0].reset(); 
+                                    console.log(response); 
+                                    window.location.href = "./signup-message.php";
+                                }
+                            }
+                        });
+                    }
+                }
+            }
     }); 
 
 
